@@ -1,0 +1,73 @@
+html{
+    background-color: #333;
+}
+
+#title {
+    font-weight: bolder;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+.image{
+    text-align: center;
+}
+
+#hcm{
+    width: 500px;
+    height: 600px;
+}
+
+#imgcap{
+    color: darkgrey;
+}
+
+.Introduction{
+    margin: auto;
+    width: 800px;
+    color: white;
+}
+
+.legend{
+    background-color: grey;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 800px;
+    margin: auto;
+    border: 2px solid grey;
+    box-shadow: 5px 10px 10px lightblue;
+    color: white;
+}
+
+#thelegend{
+    color: lightyellow;
+    font-weight: bolder;
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+}
+
+#Year{
+    margin-top: 0;
+    padding: 10px;
+    color: black;
+}
+
+.moreinfo{
+    color: white;
+    padding: 10px;
+}
+
+#info{
+    margin-left: 320px;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    text-decoration: none;
+    color: lightgrey;
+}

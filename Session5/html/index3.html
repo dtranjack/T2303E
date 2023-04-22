@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solving an Quadratic Equation</title>
+</head>
+<body>
+<div class = equation>
+  <p>Equation:</p>
+  <p>ax<sup>2</sup> + bx + c = 0</p>
+</div>
+<label for="numberinput">Input data below:</label>
+<div id="numberinput" class = numberinput style="margin-top: 20px">
+    <label for="numin1">a =</label>
+    <input style="width: 30px" type="number" id="numin1">
+    <label for="numin2">b =</label>
+    <input style="width: 30px" type="number" id="numin2">
+    <label for="numin3">c =</label>
+    <input style="width: 30px" type="number" id="numin3">
+</div>
+<div class="solvebutton">
+    <button style="margin-top: 20px" onclick="SolveEqua()">Solve</button>
+</div>
+<div class="res">
+    <p id="result"></p>
+</div>
+
+
+</body>
+<script>
+    function SolveEqua(){
+        var a, b, c, delta, sqrt_delta;
+        a = Number(document.getElementById("numin1").value);
+        if(a === ''){
+            a = 0;
+        }
+        console.log(a)
+        b = Number(document.getElementById("numin2").value);
+        if(b === ''){
+            b = 0;
+        }
+        console.log(b);
+        c = Number(document.getElementById("numin3").value);
+        if(c === ''){
+            c = 0;
+        }
+        console.log(c)
+        if(a === 0){
+            if(b === 0){
+                if (c === 0){
+                    document.getElementById("result").innerHTML = "The equation have infinitely many roots.";
+                }
+                else{
+                    document.getElementById("result").innerHTML = "The equation is impossible, no root.";
+                }
+            }
+            else{
+                document.getElementById("result").innerHTML = "The equation have duplicated roots: " + -c/b;
+            }
+        }
+        else{
+            delta = (Math.pow(b, 2)) - (4 * a * c);
+            sqrt_delta = Math.sqrt(delta);
+            if(delta < 0){
+                document.getElementById("result").innerHTML = "The equation is impossible, no root.";
+            }
+            else if (delta === 0){
+                document.getElementById("result").innerHTML = "The equation have duplicated roots: " + -b / (2 * a);
+            }
+            else{
+                let root1, root2;
+                root1 = (-b + sqrt_delta) / (2 * a);
+                root2 = (-b - sqrt_delta) / (2 * a);
+                document.getElementById("result").innerHTML = "The equation have 2 separate roots: " + root1 + " and" + root2
+            }
+        }
+    }
+</script>
+<!--
+ax^2 + bx + c = 0
+a == 0 && b = 0 && c == 0 => vo so nghiem (infinitely many roots)
+__________________ c != 0 => vo nghiem (impossible equation/no solution/ no root)
+_________ b != 0 => =>  1 nghiem ( only 1 root, -c/b)
+a != 0
+Δ = b^2 - 4ac
+Δ = 0 => nghiem kep (duplicated root -b/2a)
+Δ > 0 => 2 nghiem (2 root, root 1 = (-b + squarerootΔ) / 2a , root 2 = (-b - squarerootΔ) /2a
+Δ < 0 => vo nghiem (impossible equation/no solution/ no root)
+-->
+</html>

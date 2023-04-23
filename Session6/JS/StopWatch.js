@@ -3,8 +3,9 @@ var hour, minute, second, count
     minute = 0
     second = 0
     count = 0
-var timer = 0
+var timer
 function startimer(){
+    clearInterval(timer)
     timer = setInterval(stopWatch,10)
 }
 
@@ -65,5 +66,3 @@ function stopWatch(){
     document.getElementById('sec').innerHTML = secString;
     document.getElementById('milsec').innerHTML = countString;
 }
-
-

@@ -11,7 +11,7 @@ function getHour(){
     if (hr < 12){
         if(hr === 0){
             document.getElementById("hour").innerHTML = 12
-            document.getElementById("hour").innerHTML = "AM"
+            document.getElementById("ampm").innerHTML = "AM"
         }
         else {
             document.getElementById("hour").innerHTML = hr

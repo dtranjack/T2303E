@@ -6,7 +6,10 @@ check.addEventListener("click", CheckYear)
 function CheckYear(){
     let year = document.getElementById("leapyear").value;
     if (year === ""){
-        window.alert("Please enter a year you want to check.")
+        window.alert("Please enter a year you want to check.");
+    }
+    else if(year < 0){
+        window.alert("Please enter a valid year above 0");
     }
     else{
        checkleapyear()

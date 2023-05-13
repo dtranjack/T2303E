@@ -1,0 +1,63 @@
+html {
+    background-color: #333;
+}
+
+.form {
+    padding-left: 100px  ;
+    background-color: white;
+    width: 540px;
+    alignment: center;
+    margin: auto;
+}
+
+.input {
+    position: relative;
+    display: block;
+    margin-left: 10px;
+    margin-top: 5px;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+
+input:hover {
+    font-weight: bolder;
+}
+
+label {
+    position: relative;
+    display: block;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+#submit {
+    text-align: center;
+    margin-left: 70px;
+    margin-top: 20px;
+    background: lightgreen;
+    color: white;
+    font-weight: bolder;
+    width: 200px;
+}
+
+#forbtn {
+    margin-left: 10px;
+}
+
+.altsign {
+    margin-left: 10px;
+    width: 390px;
+}
+
+#fb {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: lightblue;
+    font-weight: bolder;
+}
+
+#google {
+    padding: 10px;
+    background-color: lightcoral;
+    font-weight: bolder;
+}

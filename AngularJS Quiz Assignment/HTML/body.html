@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quiz TH23023DuongTran</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <link rel="stylesheet" href="../CSS/body.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="my-app">
+<div ng-controller="QuizController">
+    <div ng-include="'header.html'"></div>
+    <form class="container">
+        <div class="wrapper">
+            <h2 style="font-weight: bolder"><span style="color: red">S</span>ân bay quiz</h2>
+            <div ng-repeat="q in questions"
+                 ng-show="currentQuestionIndex === $index">
+                <h5>Câu hỏi {{currentQuestionIndex + 1}}: {{q.text}}</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="options in q.options">
+                        <label class="question">
+                            <input
+                                    type="radio"
+                                    ng-model="q.answer"
+                                    ng-value="options"
+                                    ng-change="checkAnswer(q)"
+                            />
+                            {{ options }}
+                        </label>
+                    </li>
+                </ul>
+                <p ng-show="q.answered">
+                    Câu trả lời mà bạn đã chọn là: {{ q.answer }}
+                </p>
+                <p style="color: green" ng-show="q.answer === q.correctAnswer">
+                    Câu trả lời của bạn đúng
+                </p>
+                <p style="color: red" ng-show="q.answer !== q.correctAnswer && q.answered === true">
+                    Câu trả lời của bạn không đúng
+                </p>
+                <p style="color: yellow" ng-show="q.answer !== q.correctAnswer && q.answered === true">
+                    Đáp án đúng là: {{ q.correctAnswer }}
+                </p>
+                <button ng-hide="$index === 0" ng-click="previousQuestion()">Previous</button>
+                <button ng-hide="$index === questions.length - 1" ng-click="nextQuestion()">Next</button>
+                <!-- Semi-working reset button -->
+                <input
+                        class="resetBTN"
+                        type="reset"
+                        style="float: right"
+                        ng-show="$index === questions.length - 1"
+                        ng-click="resetQuiz()"
+                        value="Reset (Semi-working)"
+                >
+                <!-- Full Reset -->
+                <input
+                        class="resetBTN"
+                        type="reset"
+                        ng-show="$index === questions.length - 1"
+                        value="Full Reset"
+                        style="float: right; margin-right: 5px"
+                        ng-click="fullReset()"
+                >
+                <hr>
+            </div>
+        </div>
+    </form>
+    <div ng-include="'./footer.html'"></div>
+</div>
+</body>
+<script src="../JS/body.js"></script>
+</html>

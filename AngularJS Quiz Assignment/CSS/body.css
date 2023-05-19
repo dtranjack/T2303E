@@ -1,0 +1,45 @@
+
+
+.wrapper {
+    max-width: 600px;
+    margin: 100px auto;
+    background-color: #333;
+    padding: 20px 50px;
+    border-radius: 1em;
+    color: white;
+    box-shadow: 20px 15px grey;
+}
+.question {
+    cursor: pointer;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 1em;
+    width: 100%;
+    color: #333;
+}
+.question:hover {
+    background-color: darkgrey;
+}
+ul {
+    padding: 0;
+    list-style: none;
+}
+button {
+    background-color: darkgrey;
+    padding: 10px 30px;
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 4px;
+}
+
+.resetBTN {
+    background-color: darkgrey;
+    padding: 10px 30px;
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: rgb(150, 150, 150);
+}
+

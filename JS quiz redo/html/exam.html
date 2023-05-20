@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TH23023 Duong Tran</title>
+    <link rel="stylesheet" href="../css/exam.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    table, th, td {
+        border:1px solid black;
+        padding: 10px;
+    }
+</style>
+<body>
+<div style="padding: 10px">
+    <h2>Admin@longchau.vn</h2>
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="pill" href="#container1">Details</a></li>
+        <li><a data-toggle="pill" href="#container2">Attributes</a></li>
+        <li><a data-toggle="pill" href="#">Credentials</a></li>
+        <li><a data-toggle="pill" href="#">Role Mappings</a></li>
+        <li><a data-toggle="pill" href="#">Group</a></li>
+        <li><a data-toggle="pill" href="#">Consents</a></li>
+        <li><a data-toggle="pill" href="#">Sessions</a></li>
+    </ul>
+</div>
+<div style="padding: 10px" class="tab-content">
+
+    <div id="container1" class="tab-pane fade in active">
+        <label style="padding: 10px" for="ID">ID</label>
+        <input style="width: 60%" type="text" id="ID" value="" placeholder="2443447482" disabled>
+        <p style="padding: 10px">Created At: <span id="currentDate"></span></p>
+        <label style="padding: 10px" for="ID">Username</label>
+        <input style="width: 60%" type="text" id="username" value="" placeholder="admin@longchau.vn" disabled>
+        <br>
+        <label style="padding: 10px" for="ID">Email</label>
+        <input style="width: 60%" type="email" id="email" value="" placeholder="admin@longchau.vn">
+        <br>
+        <label style="padding: 10px" for="ID">First Name</label>
+        <input style="width: 60%" type="text" id="fname" value="" placeholder="Cong Duong">
+        <br>
+        <label style="padding: 10px" for="ID">Last Name</label>
+        <input style="width: 60%" type="text" id="lname" value="" placeholder="Tran">
+        <br>
+        <label style="padding: 10px" for="userenable">User enabled</label>
+        <label id="userenable" class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <br>
+        <label style="padding: 10px" for="everified">Email Verified</label>
+        <label id="everified" class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <br>
+        <label style="padding: 10px" for="useract">Required User Actions</label>
+        <input style="width: 60%" type="text" id="useract" value="" placeholder="Select an action...">
+        <br>
+        <label style="padding: 10px" for="imp">Impersonate user</label>
+        <button id="imp" onclick="">Impersonate</button>
+        <br>
+        <button style="margin-left: 140px">Save</button>
+        <button>Cancel</button>
+    </div>
+
+    <div style="padding: 10px" id="container2" class="tab-pane fade">
+        <table id="tab" style="width:100%;">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td><input type="text" style="width: 100%"></td>
+                <td><input type="text" style="width: 100%"></td>
+                <td><form><button style="width:100%">Add</button></form></td>
+            </tr>
+        </table>
+        <button style="margin-top: 20px">Save</button>
+        <button>Cancel</button>
+    </div>
+</div>
+</body>
+<script src="../JS/exam.js"></script>
+</html>

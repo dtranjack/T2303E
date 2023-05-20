@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../JS/body.js"></script>
 </head>
 
 <body ng-app="my-app">
@@ -38,7 +39,7 @@
                 <p ng-show="q.answered">
                     Câu trả lời mà bạn đã chọn là: {{ q.answer }}
                 </p>
-                <p style="color: green" ng-show="q.answer === q.correctAnswer">
+                <p style="color: green" ng-show="q.answer === q.correctAnswer && q.answered === true">
                     Câu trả lời của bạn đúng
                 </p>
                 <p style="color: red" ng-show="q.answer !== q.correctAnswer && q.answered === true">
@@ -55,8 +56,8 @@
                         type="reset"
                         style="float: right"
                         ng-show="$index === questions.length - 1"
-                        ng-click="resetQuiz()"
                         value="Reset"
+                        ng-click="resetQuiz()"
                 >
                 <!-- Full Reset -->
                 <input

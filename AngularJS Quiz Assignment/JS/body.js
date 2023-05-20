@@ -47,6 +47,9 @@ modular.controller("QuizController", function ($scope) {
 
     $scope.resetQuiz = function () {
         $scope.currentQuestionIndex = 0;
+        for (let i=0; i < $scope.questions.length; i++){
+            $scope.questions[i].answered = false;
+        }
     }
 
     $scope.fullReset = function () {

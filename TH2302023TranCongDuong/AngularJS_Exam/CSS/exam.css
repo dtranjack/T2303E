@@ -1,0 +1,26 @@
+.card {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+}
+.card-row {
+    clear: both;
+}
+
+button {
+    background: white;
+    border: solid 2px #6e99ff;
+    color: #6e99ff;
+    font-weight: bolder;
+}
+
+button:hover {
+    background: #6e99ff;
+    border: solid 2px #6e99ff;
+    color: white;
+}

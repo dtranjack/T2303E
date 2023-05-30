@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TH2302023TranCongDuong</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="../CSS/exam.css">
+</head>
+<body ng-app="my-app" ng-cloak >
+<div ng-controller="MyController" style="margin: auto">
+    <div class="searchbar">
+        <input type="text"  ng-model="searchFilter" value="" placeholder="Enter text to search"
+               style="width: 45%; float: left; margin: 10px 40px">
+        <input type="text"  ng-model="searchFilterCate" value="" placeholder="Search by categories" style="width: 45%; float: left; margin: 10px">
+    </div>
+    <div style="width: 70%; margin: auto">
+        <div class="card-row">
+            <div class="card" ng-repeat="card in cards | filter: {title: searchFilter, category: searchFilterCate}">
+                <h3>{{ card.title }}</h3>
+                <h4 style="color: darkgray">{{card.author}}</h4>
+                <h6>{{card.category}}</h6>
+                <p>{{ card.description }}</p>
+                <button style="margin-left: 45px">Read more</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var app = angular.module('my-app', []);
+
+    app.controller('MyController', function($scope) {
+        $scope.cards = [
+            {
+                title: 'ASP.NET MVC',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Software'
+            },
+            {
+                title: 'Node.js',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Software'
+            },
+            {
+                title: 'React.js',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Framework'
+            },
+            {
+                title: 'Typescript',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Language'
+            },
+            {
+                title: 'Sublime Text',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Software'
+            },
+            {
+                title: 'Javascript',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Language'
+            },
+            {
+                title: 'Laravel',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Framework'
+            },
+            {
+                title: 'Python',
+                author: 'Nick Harrison',
+                description: 'Lorem ipsum',
+                category: 'Language'
+            }
+        ];
+    });
+</script>
+<script src="../JS/exam.js"></script>
+</html>

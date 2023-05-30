@@ -6,7 +6,6 @@
     padding: 10px;
     margin: 10px;
     width: 200px;
-    height: 200px;
 }
 .card-row {
     clear: both;
@@ -23,4 +22,8 @@ button:hover {
     background: #6e99ff;
     border: solid 2px #6e99ff;
     color: white;
+}
+
+img {
+    width: 100%;
 }

@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="../CSS/exam.css">
 </head>
 <body ng-app="my-app" ng-cloak >
-<div ng-controller="MyController" style="margin: auto">
+<div ng-controller="MyController" style="margin: auto; margin-top: 1%">
     <div class="searchbar">
-        <input type="text"  ng-model="searchFilter" value="" placeholder="Enter text to search"
-               style="width: 45%; float: left; margin: 10px 40px">
-        <input type="text"  ng-model="searchFilterCate" value="" placeholder="Search by categories" style="width: 45%; float: left; margin: 10px">
+        <input type="text"  ng-model="searchFilter" value="" placeholder="Enter text to search" style="width: 45%; float: left; margin-left: 4%">
+        <input type="text"  ng-model="searchFilterCate" value="" placeholder="Search by categories" style="width: 45%; float: right; margin-right: 4% ">
     </div>
-    <div style="width: 70%; margin: auto">
+    <div style="width: 59%; margin: auto">
         <div class="card-row">
             <div class="card" ng-repeat="card in cards | filter: {title: searchFilter, category: searchFilterCate}">
+                <img src={{card.img}}>
                 <h3>{{ card.title }}</h3>
                 <h4 style="color: darkgray">{{card.author}}</h4>
                 <h6>{{card.category}}</h6>
@@ -29,61 +29,5 @@
     </div>
 </div>
 </body>
-<script>
-    var app = angular.module('my-app', []);
-
-    app.controller('MyController', function($scope) {
-        $scope.cards = [
-            {
-                title: 'ASP.NET MVC',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Software'
-            },
-            {
-                title: 'Node.js',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Software'
-            },
-            {
-                title: 'React.js',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Framework'
-            },
-            {
-                title: 'Typescript',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Language'
-            },
-            {
-                title: 'Sublime Text',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Software'
-            },
-            {
-                title: 'Javascript',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Language'
-            },
-            {
-                title: 'Laravel',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Framework'
-            },
-            {
-                title: 'Python',
-                author: 'Nick Harrison',
-                description: 'Lorem ipsum',
-                category: 'Language'
-            }
-        ];
-    });
-</script>
 <script src="../JS/exam.js"></script>
 </html>

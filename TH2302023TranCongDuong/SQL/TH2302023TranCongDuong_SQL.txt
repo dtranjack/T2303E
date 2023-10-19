@@ -1,0 +1,73 @@
+---1. Create a database as requested above.
+
+CREATE DATABASE SellingPoint;
+
+---2. Create table based on the above design.
+
+CREATE TABLE Categories (
+	CateID CHAR(6) PRIMARY KEY,
+	CateName NVARCHAR(100) not null, 
+	Description NVARCHAR(200)
+);
+
+CREATE TABLE Parts(
+	PartID INT PRIMARY KEY IDENTITY (1,1),
+	PartName NVARCHAR(100) not null,
+	CateID CHAR(6) FOREIGN KEY REFERENCES Categories(CateID),
+	Description NVARCHAR(1000),
+	Price MONEY Not Null default 0,
+	Quantity int default 0,
+	Warranty int default 1,
+	Photo NVARCHAR(200) default 'photo/nophoto.png'
+);
+
+---3. Insert into each table at least three records.
+-- Insert into categories
+INSERT INTO Categories(CateID, CateName, Description)
+VALUES
+('CPU', N'CPU', N'A central processing unit —also called a central processor or main processor—is the most important processor in a given computer that do that manage a device actions. '),
+('RM', N'RAM', N'Random-access memory is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code.'),
+('GPU', N'GPU', N'A graphics processing unit is a specialized electronic circuit designed to manipulate and alter memory to accelerate the creation of images in a frame buffer intended for output to a display device.'),
+('SSD', N'SSD', N'A solid-state drive is a solid-state storage device that uses integrated circuit assemblies to store data persistently, safe and fast.')
+-- Insert into Parts
+INSERT INTO Parts(PartName, CateID, Description, Price, Quantity, Warranty)
+VALUES
+(N'Corsair Vengeance LPX', 'RM', N'Corsair Vengeance LPX 32GB (2X16GB) DDR4 3200', 64.99, 200, 200),
+(N'NVIDIA 3080TI', 'GPU', N'The GeForce RTXTM 3080 Ti graphics card deliver the performance that gamers crave, powered by Ampere—NVIDIAs 2nd gen RTX architecture.', 1396.99, 30, 30),
+(N'Intel I9-13900k', 'CPU', N'Intel® Core™ i9 Processors, these processors feature a performance hybrid architecture designed for intelligent performance, optimized creating, and enhanced tuning to allow gamers to game with up to 5.8 GHz clock speed.', 568.99 ,20,20),
+(N'AMD Ryzen 9', 'CPU', N'AMD Ryzen™ 9 7950X 16-Core, 32-Thread Unlocked Desktop Processor', 541.99, 50, 50),
+(N'Corsair Vengeance RAM', 'RM', N'Ram PC Corsair Vengeance 32GB 4800MHz DDR5 (2x16GB)', 104.99, 100, 100),
+(N'SAMSUNG 980 PRO', 'SSD', N'SAMSUNG 980 PRO SSD 2TB PCIe NVMe Gen 4', 149.99, 150, 150),
+(N'AMD Ryzen 5', 'CPU', N'AMD Ryzen 5 5600X 6-core, 12-Thread Unlocked', 148.99, 70, 70)
+
+---4. List all parts in the store with price > 100$.
+
+SELECT * from Parts
+WHERE Price > 100
+ORDER BY PRICE DESC;
+
+---5. List all parts of the category ‘CPU’.
+
+SELECT * FROM Parts P
+WHERE P.CateID = N'CPU';
+
+/*
+6. Create a view v_Parts contains the following information (PartID, PartName, CateName,
+Price, Quantity) from table Parts and Categories.
+*/
+
+CREATE VIEW v_Parts AS
+SELECT p.PartID, p.PartName, c.CateName, p.Price, p.Quantity
+FROM Parts p
+INNER JOIN Categories c ON p.CateID = c.CateID;
+
+SELECT * from v_Parts;
+
+---7. Create a view v_TopParts about 5 parts with the most expensive price.
+
+CREATE VIEW v_TopParts AS
+SELECT TOP 5 PartID, PartName, Price, Quantity
+FROM Parts
+ORDER BY Price DESC;
+
+SELECT * FROM v_TopParts;

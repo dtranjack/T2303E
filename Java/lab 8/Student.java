@@ -1,5 +1,8 @@
 package lab8;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -7,14 +10,42 @@ import java.time.Instant;
 import java.util.*;
 
 public class Student {
-    private final int id;
-    private String name;
-    private String address;
-    private String phoneNumber;
-    private Date DoB;
-    private Date entryDate;
 
-    public Student(int id, String name, String address, String phoneNumber, Date DoB, Date entryDate) {
+    private static long id;
+    private static String name;
+    private static String address;
+    private static String phoneNumber;
+    private static Date DoB;
+    private static Date entryDate;
+
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dobStr = dateFormat.format(DoB);
+        String entryDateStr = dateFormat.format(entryDate);
+
+        return "Student ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Address: " + address + "\n" +
+                "Phone Number: " + phoneNumber + "\n" +
+                "Date of Birth: " + dobStr + "\n" +
+                "Entry Date: " + entryDateStr + "\n" +
+                "Age: " + getAge() + "\n" +
+                "Level: " + getLevel() + "\n";
+    }
+
+
+    private static final Student instance = new Student();
+
+    private Student() {
+        // Private constructor
+    }
+
+    public static Student getInstance() {
+        return instance;
+    }
+
+    public Student(long id, String name, String address, String phoneNumber, Date DoB, Date entryDate) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -23,19 +54,40 @@ public class Student {
         this.entryDate = entryDate;
     }
 
+    public static boolean setPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() == 7 && phoneNumber.matches("[0-9]+")) {
+            Student.phoneNumber = phoneNumber;
+            return true;
+        } else {
+            System.out.println("The phone number must have 7 digits !");
+            System.out.println("Try again :");
+            return false;
+        }
+    }
+
     public static Student inputInfo() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter Student ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline
+        while (true) {
+            System.out.print("Enter Student ID: ");
+            try {
+                long id = scanner.nextLong();
+                scanner.nextLine(); // Consume the newline
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("ID need to be a number, try again: ");
+                scanner.nextLine(); // Consume the newline
+            }
+        }
         System.out.print("Enter Student Name: ");
         String name = scanner.nextLine();
         System.out.print("Enter Student Address: ");
         String address = scanner.nextLine();
-        System.out.print("Enter 7-Digit Phone Number: ");
-        String phoneNumber = scanner.next();
-        scanner.nextLine();
+        System.out.print("Enter a 7-digit phone number: ");
+        while (true) {
+            if (setPhoneNumber(scanner.nextLine()))
+                break;
+        }
         System.out.print("Enter Date of Birth in the (yy-MM-dd) format: ");
         String DoBstr = scanner.nextLine();
         System.out.print("Enter Date of enrollment in the (yy-MM-dd) format: ");
@@ -56,7 +108,18 @@ public class Student {
         return new Student(id, name, address, phoneNumber, dob, entryDate);
     }
 
-    public int getId() {
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() == 7 && phoneNumber.matches("[0-9]+")) {
+            this.phoneNumber = phoneNumber;
+            return true;
+        } else {
+            System.err.println("The phone number must have 7 digits !");
+            System.out.println("Try again :");
+            return false;
+        }
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -95,9 +158,9 @@ public class Student {
         return null;
     }
 
-    private static final List<Student> studentList = new ArrayList<>();
+    private static List<Student> studentList = new ArrayList<>();
 
-    public static Student addStudent() {
+    public Student addStudent() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -111,7 +174,7 @@ public class Student {
             }
         }
 
-        studentList.sort(Comparator.comparingInt(Student::getId));
+        studentList.sort(Comparator.comparingLong(Student::getId));
         return studentList.get(studentList.size() - 1);
     }
 
@@ -121,15 +184,7 @@ public class Student {
 
     public static void showStudent() {
         System.out.println("Student List (Sorted by ID in Ascending Order):");
-        for (Student s : studentList) {
-            System.out.println("ID: " + s.getId());
-            System.out.println("Name: " + s.getName());
-            System.out.println("Address: " + s.getAddress());
-            System.out.println("Phone Number: " + s.getPhoneNumber());
-            System.out.println("Age: " + s.getAge());
-            System.out.println("Level: " + s.getLevel() + "\n");
-
-        }
+        studentList.forEach(System.out::println);
     }
 
     public static void updateStudent(List<Student> studentList, int studentId, Scanner scanner) {
@@ -227,14 +282,7 @@ public class Student {
             System.out.println("No students with the specified age found.");
         } else {
             System.out.println("Students with age " + filterAge + ":");
-            for (Student s : studentsWithSameAge) {
-                System.out.println("ID: " + s.getId());
-                System.out.println("Name: " + s.getName());
-                System.out.println("Address: " + s.getAddress());
-                System.out.println("Phone Number: " + s.getPhoneNumber());
-                System.out.println("Age: " + s.getAge());
-                System.out.println("Level: " + s.getLevel() + "\n");
-            }
+            studentList.forEach(System.out::println);
         }
     }
 
@@ -251,14 +299,23 @@ public class Student {
             System.out.println("No students with the specified level found.");
         } else {
             System.out.println("Students from the level " + filterLevel + ":");
-            for (Student s : studentsWithSameLevel) {
-                System.out.println("ID: " + s.getId());
-                System.out.println("Name: " + s.getName());
-                System.out.println("Address: " + s.getAddress());
-                System.out.println("Phone Number: " + s.getPhoneNumber());
-                System.out.println("Age: " + s.getAge());
-                System.out.println("Level: " + s.getLevel() + "\n");
-            }
+            studentList.forEach(System.out::println);
         }
     }
+    public static void saveStudentListToTextFile(List<Student> studentList, String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Student student : studentList) {
+                writer.write("ID: " + student.getId() + "\n");
+                writer.write("Name: " + student.getName() + "\n");
+                writer.write("Address: " + student.getAddress() + "\n");
+                writer.write("Phone Number: " + student.getPhoneNumber() + "\n");
+                writer.write("Age: " + student.getAge() + "\n");
+                writer.write("Level: " + student.getLevel() + "\n");
+                writer.write("\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving student list to the text file: " + e.getMessage());
+        }
+    }
+
 }

@@ -2,6 +2,8 @@ package lab8;
 
 import java.util.*;
 
+import static lab8.Student.saveStudentListToTextFile;
+
 public class StudentApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,79 +25,84 @@ public class StudentApp {
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline
 
+            Student studentInstance = Student.getInstance();
+
             switch (choice) {
                 case 1:
                     // Add a student
-                    Student newStudent = Student.addStudent();
+                    Student newStudent = studentInstance.addStudent();
                     System.out.println("Student added: ID - " + newStudent.getId() + ", Name - " + newStudent.getName());
                     break;
 
                 case 2:
                     // Show the student list
-                    List<Student> studentList = Student.getStudentList();
+                    List<Student> studentList = studentInstance.getStudentList();
                     if (studentList.isEmpty()) {
                         System.out.println("No students existed.");
                     } else {
-                        Student.showStudent();
+                        studentInstance.showStudent();
                         }
                     break;
 
                 case 3:
                     //edit a student using ID
-                    studentList = Student.getStudentList();
+                    studentList = studentInstance.getStudentList();
                     if (studentList.isEmpty()) {
                         System.out.println("No students existed.");
                     } else {
                         System.out.print("Enter the ID of the student to edit: ");
                         int editStudentId = scanner.nextInt();
                         scanner.nextLine();
-                        Student.updateStudent(studentList, editStudentId, scanner);
+                        studentInstance.updateStudent(studentList, editStudentId, scanner);
                     }
                     break;
 
                 case 4:
                     // Remove a student using ID
-                    studentList = Student.getStudentList();
+                    studentList = studentInstance.getStudentList();
                     if (studentList.isEmpty()) {
                         System.out.println("No students existed.");
                     } else {
                         System.out.print("Enter the ID of the student to remove: ");
                         int removeStudentId = scanner.nextInt();
                         scanner.nextLine();
-                        Student.removeStudent(studentList, removeStudentId, scanner);
+                        studentInstance.removeStudent(studentList, removeStudentId, scanner);
                     }
                     break;
 
                 case 5:
                     // Show students with the same age
-                    studentList = Student.getStudentList();
+                    studentList = studentInstance.getStudentList();
                     if (studentList.isEmpty()) {
                         System.out.println("No students existed.");
                     } else {
                         System.out.print("Enter the age to filter the student of that age: ");
                         int filterAge = scanner.nextInt();
                         scanner.nextLine();
-                        Student.showStudentWithSameAge(studentList, filterAge);
+                        studentInstance.showStudentWithSameAge(studentList, filterAge);
                     }
                     break;
 
                 case 6:
                     // Show students with the same level
-                    studentList = Student.getStudentList();
+                    studentList = studentInstance.getStudentList();
                     if (studentList.isEmpty()) {
                         System.out.println("No students existed.");
                     } else {
                         System.out.print("Enter the level to filter the student of that level: ");
                         int filterLevel = scanner.nextInt();
                         scanner.nextLine();
-                        Student.showStudentWithLevel(studentList, filterLevel);
+                        studentInstance.showStudentWithLevel(studentList, filterLevel);
                     }
                     break;
 
                 case 7:
-                    // Todo: Save student list to a text file and exit the program (use singleton)
-                    // ...
-                    break;
+                    // Save student list to a text file and exit
+                    studentList = studentInstance.getStudentList();
+                    saveStudentListToTextFile(studentList, "student_list.txt");
+                    System.out.println("Student list saved to student_list.txt.");
+                    System.out.println("Exiting the application.");
+                    System.exit(0);
 
                 case 8:
                     // Exit the application

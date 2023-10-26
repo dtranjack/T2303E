@@ -39,7 +39,7 @@ public class Main {
         System.out.println("Added 4 Football to the order: " + (addedFootball ? "Success" : "Fail"));
 
         // Calculate and display the total cost of the order
-        int totalCost = order.getTotalCost();
+        double totalCost = order.getTotalCost();
         System.out.println("Total Cost of the Order: $" + totalCost);
 
         // Print all the information of the order
@@ -73,7 +73,7 @@ public class Main {
         System.out.println("Added 3 iPhones to the order: " + (addediPhone2 ? "Success" : "Fail"));
 
         // Calculate and display the total cost of the order for Chris Evans
-        int totalCostChris = chrisOrder.getTotalCost();
+        double totalCostChris = chrisOrder.getTotalCost();
         System.out.println("Total Cost of the Order for Chris Evans: $" + totalCostChris);
 
         // Print all the information of the order for Chris Evans

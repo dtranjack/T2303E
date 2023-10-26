@@ -8,7 +8,7 @@ public class Order extends DeliveryOrder {
     private String customerName;
     private Date transactionTime;
     private List<LineItem> lineItems = new ArrayList<>();
-    private int totalCost = 0; // Initialize total cost
+    private double totalCost = 0; // Initialize total cost
 
     public Order() {
     }
@@ -60,7 +60,7 @@ public class Order extends DeliveryOrder {
         }
     }
 
-    public int getTotalCost() {
+    public double getTotalCost() {
         return totalCost;
     }
 }

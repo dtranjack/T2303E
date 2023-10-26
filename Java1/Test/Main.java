@@ -51,12 +51,12 @@ public class Main {
 
         // Create a new DeliveryOrder for Chris Evans
         Order chrisOrder = new Order();
-        order.setCustomerName("Chris Evans");
+        chrisOrder.setCustomerName("Chris Evans");
         chrisOrder.setAddress("123 Cau Giay");
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date transactionTime = dateFormat2.parse("2023-08-09 13:14:00");
-            order.setTransactionTime(transactionTime);
+            chrisOrder.setTransactionTime(transactionTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -79,7 +79,7 @@ public class Main {
         // Print all the information of the order for Chris Evans
         System.out.println("Order Information for Chris Evans:");
         System.out.println("Customer: " + chrisOrder.getCustomerName());
-        System.out.println("Transaction Time: " + chrisOrder.getTransactionTime());
+        System.out.println("Transaction Time: " + dateFormat.format(chrisOrder.getTransactionTime()));
         System.out.println("Delivery Address: " + chrisOrder.getAddress());
     }
 }

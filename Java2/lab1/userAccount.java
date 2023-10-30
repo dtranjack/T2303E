@@ -30,34 +30,38 @@ public class userAccount {
     public static userAccount convert(DateFormat dateFormat, String header, String info) throws ParseException, AgeRestrictionException {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if (StringUtils.isEmpty(info)) return null;
-        if (info.trim().equalsIgnoreCase(header)) return null;
-        String[] charsList = info.split("\\|");
+        if (info.trim().equalsIgnoreCase(header)) return null; //remove white spaces
+        String[] charsList = info.split("\\|"); // the \\ is to separate | from regular expression
 
-        //Validate CardType
+        //Validate CardType "VISA", "JCB", "HYBRID"
         String cardType = charsList[1].trim();
         if (!checkCardType(cardType)) {
             System.err.println("Invalid CARD TYPE "+ cardType +",please make sure the CARD TYPE is valid within the following options \"VISA\", \"JCB\", \"HYBRID\".");
             return null;
         }
 
+        //Validate CardNumber (16 digits)
         String cardNumber = charsList[3].trim();
         if (!checkCardNumber(cardNumber)) {
             System.err.println("Invalid CARD NUMBER "+ cardNumber + ",please make sure the CARD NUMBER is valid and have 16 digits.");
             return null;
         }
 
+        //Validate ID Card (12 digits)
         String idCard = charsList[4].trim();
         if (!checkIDCard(idCard)) {
             System.err.println("Invalid ID CARD " + idCard +",please make sure the ID CARD is valid and have 12 digits.");
             return null;
         }
 
+        //Validate MSISDN (7 digits)
         String msisdn = charsList[5].trim();
         if (!checkMSISDN(msisdn)) {
             System.err.println("Invalid MSISDN " + msisdn +", please make sure the MSISDN is valid and have 7 digits");
             return null;
         }
 
+        //Validate DateOfBirth (Can only make bank account if above 15 years old)
         String dobString = charsList[7].trim();
         Date dob = dateFormat.parse(dobString);
         Calendar BirthYear = Calendar.getInstance();
